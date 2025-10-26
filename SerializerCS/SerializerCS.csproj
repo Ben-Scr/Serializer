@@ -1,9 +1,34 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
 
-  <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+		<PackageId>SerializerCS</PackageId>
+		<Version>1.0.0</Version>
+		<Authors>Ben Schneider</Authors>
+		<Company>Ben Schneider</Company>
+		<Description>A C# Serialization/Deserialization Library which provides JSON, Binary and XML Serialization</Description>
 
+		<PackageProjectUrl>https://github.com/Ben-Scr/SerializerCS</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/Ben-Scr/SerializerCS</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+
+		<PackageTags>
+			Serialization;
+			Deserialization;
+			JSON;
+			XML;
+			Binary;
+		</PackageTags>
+		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageIcon>icon.png</PackageIcon>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="../README.md" Pack="true" PackagePath="\" />
+		<None Include="../LICENSE.txt" Pack="true" PackagePath="\" />
+		<None Include="icon.png" Pack="true" PackagePath="\" />
+	</ItemGroup>
 </Project>

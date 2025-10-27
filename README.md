@@ -1,29 +1,34 @@
 # SerializerCS
-A C# Serializing library
+A Performant C# `Net 9.0` Serialization library 
 
-## Usage
-- Serialzing/Deserializing data into JSON, XML and Binary format
-- File Management
+## Features
+- Serialization and Deserialization of Json, Xml and Binary data
 
 ## How to use
+```csharp
+using BenScr.Serialization.Json;
+using BenScr.Serialization.Xml;
+using BenScr.Serialization.Binary;
+```
+
 - Json
 ```csharp
 string path = "Test.json";
 PersonData data = new PersonData("Name", 20);
-Serializer.Json.Serialize(path, data);
-PersonData loadedPerson = Serializer.Json.Deserialize<PersonData>(path);
+Json.Save(path, data);
+PersonData loadedPerson = Json.Load<PersonData>(path);
 ```
 - Binary
 ```csharp
 string path = "Test.bin";
 PersonData data = new PersonData("Name", 20);
-Serializer.Binary.Serialize(path, data);
-PersonData loadedPerson = Serializer.Binary.Deserialize<PersonData>(path);
+Binary.Save(path, data);
+PersonData loadedPerson = Binary.Load<PersonData>(path);
 ```
 - XML
 ```csharp
 string path = "Test.xml";
 PersonData data = new PersonData("Name", 20);
-Serializer.XML.Serialize(path, data);
-PersonData loadedPerson = Serializer.XML.Deserialize<PersonData>(path);
+XML.Save(path, data);
+PersonData loadedPerson = XML.Load<PersonData>(path);
 ```

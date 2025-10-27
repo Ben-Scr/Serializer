@@ -12,6 +12,10 @@ string path = "Test.json";
 PersonData data = new PersonData("Name", 20);
 Serializer.Json.Serialize(path, data);
 PersonData loadedPerson = Serializer.Json.Deserialize<PersonData>(path);
+
+// Structure
+public static void Serialize<T>(string path, T obj, JsonSerializerOptions? options = null)
+public static T Deserialize<T>(string path, T defaultValue = default(T), JsonSerializerOptions? options = null)
 ```
 - Binary
 ```csharp
@@ -26,3 +30,4 @@ string path = "Test.xml";
 PersonData data = new PersonData("Name", 20);
 Serializer.XML.Serialize(path, data);
 PersonData loadedPerson = Serializer.XML.Deserialize<PersonData>(path);
+```

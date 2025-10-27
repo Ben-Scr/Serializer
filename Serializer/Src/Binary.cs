@@ -7,7 +7,7 @@ namespace BenScr.Serialization.Binary
 {
     public static class Binary
     {
-        public static void SerializeUnmanagedBlock<T>(string path, ReadOnlySpan<T> span, CompressionLevel level = CompressionLevel.Fastest) where T : unmanaged
+        public static void Save<T>(string path, ReadOnlySpan<T> span, CompressionLevel level = CompressionLevel.Fastest) where T : unmanaged
         {
             string dirPath = Path.GetDirectoryName(path);
             if (!string.IsNullOrEmpty(dirPath))
@@ -25,7 +25,7 @@ namespace BenScr.Serialization.Binary
             ReadOnlySpan<byte> raw = MemoryMarshal.AsBytes(span);
             gzip.Write(raw);
         }
-        public static ReadOnlySpan<T> DeserializeUnmanagedBlock<T>(string path) where T : unmanaged
+        public static ReadOnlySpan<T> Load<T>(string path) where T : unmanaged
         {
             if (!File.Exists(path))
                 throw new FileNotFoundException($"File not found at path ({path})");

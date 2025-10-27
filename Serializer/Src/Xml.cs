@@ -4,7 +4,7 @@ namespace BenScr.Serialization.Xml
 {
     public static class Xml
     {
-        public static void Serialize<T>(string path, T obj)
+        public static void Save<T>(string path, T obj)
         {
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
             FileStream fs = new FileStream(path, FileMode.Create);
@@ -12,7 +12,7 @@ namespace BenScr.Serialization.Xml
             fs.Close();
         }
 
-        public static T Deserialize<T>(string path)
+        public static T Load<T>(string path)
         {
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
             FileStream fs = new FileStream(path, FileMode.Open);

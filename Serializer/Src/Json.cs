@@ -19,7 +19,7 @@ namespace BenScr.Serialization.Json
             WriteIndented = true
         };
 
-        public static void Serialize<T>(string path, T obj, JsonSerializerOptions? options = null)
+        public static void Save<T>(string path, T obj, JsonSerializerOptions? options = null)
         {
             string dirPath = Path.GetDirectoryName(path);
             if (!string.IsNullOrEmpty(dirPath))
@@ -33,10 +33,10 @@ namespace BenScr.Serialization.Json
 
             using (fs)
             {
-                System.Text.Json.JsonSerializer.Serialize(fs, obj, options);
+                JsonSerializer.Serialize(fs, obj, options);
             }
         }
-        public static T Deserialize<T>(string path, T defaultValue = default!, JsonSerializerOptions? options = null)
+        public static T Load<T>(string path, T defaultValue = default!, JsonSerializerOptions? options = null)
         {
             if (!File.Exists(path)) return defaultValue;
 
@@ -59,7 +59,7 @@ namespace BenScr.Serialization.Json
             }
         }
 
-        public static void Serialize<T>(string path, T item, CompressionLevel compressionLevel = CompressionLevel.Fastest, JsonSerializerOptions? options = null)
+        public static void Save<T>(string path, T item, CompressionLevel compressionLevel = CompressionLevel.Fastest, JsonSerializerOptions? options = null)
         {
             string dirPath = Path.GetDirectoryName(path);
             if (!string.IsNullOrEmpty(dirPath))
@@ -78,7 +78,7 @@ namespace BenScr.Serialization.Json
             using var gzip = new GZipStream(fs, compressionLevel, leaveOpen: false);
             System.Text.Json.JsonSerializer.Serialize(gzip, item, DefaultJson);
         }
-        public static T Deserialize<T>(string path, JsonSerializerOptions? options = null)
+        public static T Load<T>(string path, JsonSerializerOptions? options = null)
         {
             if (!File.Exists(path))
                 throw new FileNotFoundException($"File not found at path ({path})");
@@ -113,7 +113,7 @@ namespace BenScr.Serialization.Json
         private const int keySize = 32;
         private const int iterations = 100_000;
 
-        public static void Serialize<T>(string path, string password, T obj, JsonSerializerOptions? options = null)
+        public static void Save<T>(string path, string password, T obj, JsonSerializerOptions? options = null)
         {
             string dirPath = Path.GetDirectoryName(path);
             if (!string.IsNullOrEmpty(dirPath))
@@ -150,7 +150,7 @@ namespace BenScr.Serialization.Json
             using var crypto = new CryptoStream(fs, aes.CreateEncryptor(), CryptoStreamMode.Write);
             JsonSerializer.Serialize(crypto, obj, options);
         }
-        public static T Deserialize<T>(string path, string password, T defaultValue = default!, JsonSerializerOptions? options = null)
+        public static T Load<T>(string path, string password, T defaultValue = default!, JsonSerializerOptions? options = null)
         {
             if (!File.Exists(path))
                 return defaultValue;

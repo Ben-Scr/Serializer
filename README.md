@@ -1,4 +1,4 @@
-# SerializerCS
+# Serializer
 A Performant C# `Net 9.0` Serialization library 
 
 ## Features

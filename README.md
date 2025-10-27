@@ -1,8 +1,8 @@
 # Serializer
-A Performant C# `Net 9.0` Serialization library 
+A Performant C# `Net 9.0` Serialization library that combines Json, Xml and Binary
 
 ## Features
-- Serialization and Deserialization of Json, Xml and Binary data
+- Serialization and Deserialization of Json, Xml and Binary
 
 ## How to use
 ```csharp

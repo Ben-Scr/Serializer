@@ -5,13 +5,13 @@
 		<Nullable>enable</Nullable>
 
 		<PackageId>SerializerCS</PackageId>
-		<Version>1.0.2</Version>
+		<Version>1.0.3</Version>
 		<Authors>Ben Schneider</Authors>
 		<Company>Ben Schneider</Company>
 		<Description>A C# Library which provides Json, Xml and Binary Serialization and Deserialization</Description>
 
-		<PackageProjectUrl>https://github.com/Ben-Scr/SerializerCS</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/Ben-Scr/SerializerCS</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/Ben-Scr/Serializer</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/Ben-Scr/Serializer</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 
 		<PackageTags>

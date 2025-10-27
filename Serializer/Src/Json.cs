@@ -76,7 +76,7 @@ namespace BenScr.Serialization.Json
             options ??= DefaultJson;
 
             using var gzip = new GZipStream(fs, compressionLevel, leaveOpen: false);
-            System.Text.Json.JsonSerializer.Serialize(gzip, item, DefaultJson);
+            JsonSerializer.Serialize(gzip, item, DefaultJson);
         }
         public static T LoadCompressed<T>(string path, JsonSerializerOptions? options = null)
         {
@@ -95,7 +95,7 @@ namespace BenScr.Serialization.Json
 
             using var gzip = new GZipStream(fs, CompressionMode.Decompress, leaveOpen: false);
 
-            return System.Text.Json.JsonSerializer.Deserialize<T>(gzip, DefaultJson)
+            return JsonSerializer.Deserialize<T>(gzip, DefaultJson)
                    ?? throw new InvalidDataException("Deserialization resulted in null");
         }
     }

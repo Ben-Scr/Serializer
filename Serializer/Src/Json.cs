@@ -59,7 +59,7 @@ namespace BenScr.Serialization.Json
             }
         }
 
-        public static void Save<T>(string path, T item, CompressionLevel compressionLevel = CompressionLevel.Fastest, JsonSerializerOptions? options = null)
+        public static void SaveCompressed<T>(string path, T item, CompressionLevel compressionLevel = CompressionLevel.Fastest, JsonSerializerOptions? options = null)
         {
             string dirPath = Path.GetDirectoryName(path);
             if (!string.IsNullOrEmpty(dirPath))
@@ -78,7 +78,7 @@ namespace BenScr.Serialization.Json
             using var gzip = new GZipStream(fs, compressionLevel, leaveOpen: false);
             System.Text.Json.JsonSerializer.Serialize(gzip, item, DefaultJson);
         }
-        public static T Load<T>(string path, JsonSerializerOptions? options = null)
+        public static T LoadCompressed<T>(string path, JsonSerializerOptions? options = null)
         {
             if (!File.Exists(path))
                 throw new FileNotFoundException($"File not found at path ({path})");

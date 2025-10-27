@@ -5,7 +5,7 @@ A C# Serializing library
 - Serialzing/Deserializing data into JSON, XML and Binary format
 - File Management
 
-## Syntax
+## How to use
 - Json
 ```csharp
 string path = "Test.json";

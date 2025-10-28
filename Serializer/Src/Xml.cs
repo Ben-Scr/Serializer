@@ -20,9 +20,19 @@ namespace BenScr.Serialization.Xml
         {
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
             FileStream fs = new FileStream(path, FileMode.Open);
-            T obj = (T)xmlSerializer.Deserialize(fs) ?? defaultValue;
-            fs.Close();
-            return obj;
+
+            using (fs)
+            {
+                try
+                {
+                    return (T)xmlSerializer.Deserialize(fs);
+                }
+                catch
+                {
+                    return defaultValue;
+                }
+            }
+
         }
     }
 }

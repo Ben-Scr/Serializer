@@ -36,29 +36,6 @@ namespace BenScr.Serialization.Json
                 JsonSerializer.Serialize(fs, obj, options);
             }
         }
-        public static T Load<T>(string path, T defaultValue = default!, JsonSerializerOptions? options = null)
-        {
-            if (!File.Exists(path)) return defaultValue;
-
-            using FileStream fs = new FileStream(
-                path, FileMode.Open, FileAccess.Read, FileShare.Read,
-                bufferSize: 1 << 20, FileOptions.SequentialScan);
-
-            options ??= DefaultJson;
-
-            using (fs)
-            {
-                try
-                {
-                    return JsonSerializer.Deserialize<T>(fs, options)! ?? throw new InvalidDataException("Deserialization resulted in null");
-                }
-                catch
-                {
-                    return defaultValue;
-                }
-            }
-        }
-
         public static void SaveCompressed<T>(string path, T item, CompressionLevel compressionLevel = CompressionLevel.Fastest, JsonSerializerOptions? options = null)
         {
             string dirPath = Path.GetDirectoryName(path);
@@ -78,7 +55,31 @@ namespace BenScr.Serialization.Json
             using var gzip = new GZipStream(fs, compressionLevel, leaveOpen: false);
             JsonSerializer.Serialize(gzip, item, DefaultJson);
         }
-        public static T LoadCompressed<T>(string path, JsonSerializerOptions? options = null)
+
+        public static T Load<T>(string path, T defaultValue = default!, JsonSerializerOptions? options = null)
+        {
+            if (!File.Exists(path)) return defaultValue;
+
+            using FileStream fs = new FileStream(
+                path, FileMode.Open, FileAccess.Read, FileShare.Read,
+                bufferSize: 1 << 20, FileOptions.SequentialScan);
+
+            options ??= DefaultJson;
+
+            using (fs)
+            {
+                try
+                {
+                    return JsonSerializer.Deserialize<T>(fs, options)!;
+                }
+                catch
+                {
+                    return defaultValue;
+                }
+            }
+        }
+
+        public static T LoadCompressed<T>(string path, T defaultValue = default!, JsonSerializerOptions? options = null)
         {
             if (!File.Exists(path))
                 throw new FileNotFoundException($"File not found at path ({path})");
@@ -94,9 +95,7 @@ namespace BenScr.Serialization.Json
             options ??= DefaultJson;
 
             using var gzip = new GZipStream(fs, CompressionMode.Decompress, leaveOpen: false);
-
-            return JsonSerializer.Deserialize<T>(gzip, DefaultJson)
-                   ?? throw new InvalidDataException("Deserialization resulted in null");
+            return JsonSerializer.Deserialize<T>(gzip, DefaultJson) ?? defaultValue;
         }
     }
     public static class JsonSecure
@@ -185,8 +184,14 @@ namespace BenScr.Serialization.Json
 
                 using var crypto = new CryptoStream(fs, aes.CreateDecryptor(), CryptoStreamMode.Read);
 
-                return JsonSerializer.Deserialize<T>(crypto, options)!
-                       ?? throw new InvalidDataException("Deserialization resulted in null");
+                try
+                {
+                    return JsonSerializer.Deserialize<T>(crypto, options)!;
+                }
+                catch
+                {
+                    return defaultValue;
+                }
             }
             catch
             {

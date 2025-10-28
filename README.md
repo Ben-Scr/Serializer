@@ -32,5 +32,9 @@ PersonData data = new PersonData("Name", 20);
 XML.Save(path, data);
 PersonData loadedPerson = XML.Load<PersonData>(path);
 ```
+
+## Planned
+- Converting files from one format to any other
+
 ## Support
 [![Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/benscr)</p>

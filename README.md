@@ -18,14 +18,14 @@ PersonData data = new PersonData("Name", 20);
 Json.Save(path, data);
 PersonData loadedPerson = Json.Load<PersonData>(path);
 ```
-- Binary (planned)
+- Binary
 ```csharp
 string path = "Test.bin";
 PersonData data = new PersonData("Name", 20);
 Binary.Save(path, data);
 PersonData loadedPerson = Binary.Load<PersonData>(path);
 ```
-- XML
+- Xml
 ```csharp
 string path = "Test.xml";
 PersonData data = new PersonData("Name", 20);

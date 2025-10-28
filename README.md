@@ -18,7 +18,7 @@ PersonData data = new PersonData("Name", 20);
 Json.Save(path, data);
 PersonData loadedPerson = Json.Load<PersonData>(path);
 ```
-- Binary
+- Binary (planned)
 ```csharp
 string path = "Test.bin";
 PersonData data = new PersonData("Name", 20);
@@ -32,3 +32,5 @@ PersonData data = new PersonData("Name", 20);
 XML.Save(path, data);
 PersonData loadedPerson = XML.Load<PersonData>(path);
 ```
+## Support
+[![Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/benscr)</p>

@@ -10,8 +10,9 @@
 		<Company>Ben Schneider</Company>
 		<Description>A C# Library which provides Json, Xml and Binary Serialization and Deserialization</Description>
 
-		<PackageProjectUrl>https://github.com/Ben-Scr/Serializer</PackageProjectUrl>
-		<RepositoryUrl>https://ko-fi.com/benscr</RepositoryUrl>
+		<RepositoryUrl>https://github.com/Ben-Scr/Serializer</RepositoryUrl>
+		<PackageProjectUrl>		https://ko-fi.com/benscr</PackageProjectUrl>
+		
 		<RepositoryType>git</RepositoryType>
 
 		<PackageTags>

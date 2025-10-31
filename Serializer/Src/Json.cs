@@ -68,21 +68,13 @@ namespace BenScr.Serialization.Json
 
             using (fs)
             {
-                try
-                {
-                    return JsonSerializer.Deserialize<T>(fs, options)!;
-                }
-                catch
-                {
-                    return defaultValue;
-                }
+                return JsonSerializer.Deserialize<T>(fs, options) ?? defaultValue;
             }
         }
 
         public static T LoadCompressed<T>(string path, T defaultValue = default!, JsonSerializerOptions? options = null)
         {
-            if (!File.Exists(path))
-                throw new FileNotFoundException($"File not found at path ({path})");
+            if (!File.Exists(path)) return defaultValue;
 
             using var fs = new FileStream(
                 path,

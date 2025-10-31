@@ -5,8 +5,9 @@ namespace BenScr.Serialization.Binary
     public static class Binary
     {
         public static readonly MessagePackSerializerOptions DefaultMsgPack =
-             MessagePackSerializerOptions.Standard
-                 .WithCompression(MessagePackCompression.Lz4BlockArray);
+            MessagePackSerializerOptions.Standard
+                .WithResolver(MessagePack.Resolvers.ContractlessStandardResolver.Instance)
+                .WithCompression(MessagePackCompression.Lz4BlockArray);
 
         public static void Save<T>(string path, T obj, MessagePackSerializerOptions? options = null)
         {
@@ -19,7 +20,6 @@ namespace BenScr.Serialization.Binary
                 bufferSize: 1 << 20, options: FileOptions.SequentialScan);
 
             options ??= DefaultMsgPack;
-
             MessagePackSerializer.Serialize(fs, obj, options);
         }
         public static T Load<T>(string path, T defaultValue = default!, MessagePackSerializerOptions? options = null)
@@ -31,15 +31,7 @@ namespace BenScr.Serialization.Binary
                 bufferSize: 1 << 20, options: FileOptions.SequentialScan);
 
             options ??= DefaultMsgPack;
-
-            try
-            {
-                return MessagePackSerializer.Deserialize<T>(fs, options);
-            }
-            catch
-            {
-                return defaultValue;
-            }
+            return MessagePackSerializer.Deserialize<T>(fs, options) ?? defaultValue;
         }
     }
 }

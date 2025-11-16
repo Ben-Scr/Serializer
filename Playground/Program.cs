@@ -1,9 +1,7 @@
 ﻿using BenScr.Serialization.Binary;
 using BenScr.Serialization.Json;
 using BenScr.Serialization.Xml;
-using MessagePack;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 
 public static class Program
 {

@@ -21,6 +21,7 @@
 			Json;
 			Xml;
 			Binary;
+			File Conversion;
 		</PackageTags>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 		<PackageReadmeFile>README.md</PackageReadmeFile>

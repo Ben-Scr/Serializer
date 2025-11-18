@@ -34,7 +34,7 @@ PersonData loadedPerson = XML.Load<PersonData>(path);
 ```
 Converting files from one format to any other
 ```csharp
-// Variant 1 creates a new file containing the same data,
+// ConvertTo() Creates a new file containing the same data,
 // but converted into a different format.
 // By default, the output path is "path.[extension]"—in this case, "path.xml".
 // You can override the output path by specifying it as the fourth parameter.

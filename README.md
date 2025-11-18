@@ -32,9 +32,14 @@ PersonData data = new PersonData("Name", 20);
 XML.Save(path, data);
 PersonData loadedPerson = XML.Load<PersonData>(path);
 ```
-
-## Planned
-- Converting files from one format to any other
+Converting files from one format to any other
+```csharp
+// Variant 1 creates a new file containing the same data,
+// but converted into a different format.
+// By default, the output path is "path.[extension]"—in this case, "path.xml".
+// You can override the output path by specifying it as the fourth parameter.
+FileConverter.ConvertTo(path: "path.json", original: Format.Json, to: Format.Xml);
+```
 
 ## Support
 [![Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/benscr)</p>

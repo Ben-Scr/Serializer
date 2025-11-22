@@ -40,6 +40,3 @@ Converting files from one format to any other
 // You can override the output path by specifying it as the fourth parameter.
 FileConverter.ConvertTo(path: "path.json", original: Format.Json, to: Format.Xml);
 ```
-
-## Support
-[![Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/benscr)</p>

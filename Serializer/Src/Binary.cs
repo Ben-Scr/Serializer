@@ -5,14 +5,14 @@ namespace BenScr.Serialization.Binary
     public static class Binary
     {
         public static readonly MessagePackSerializerOptions DefaultMsgPack =
-            MessagePackSerializerOptions.Standard
+                 MessagePackSerializerOptions.Standard
                 .WithResolver(MessagePack.Resolvers.ContractlessStandardResolver.Instance)
                 .WithCompression(MessagePackCompression.Lz4BlockArray);
 
         public static void Save<T>(string path, T obj, MessagePackSerializerOptions? options = null)
         {
             string? dirPath = Path.GetDirectoryName(path);
-            if (!string.IsNullOrEmpty(dirPath))
+            if (!string.IsNullOrEmpty(dirPath) && !Directory.Exists(dirPath))
                 Directory.CreateDirectory(dirPath);
 
             using FileStream fs = new FileStream(

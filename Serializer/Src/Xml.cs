@@ -21,7 +21,7 @@ namespace BenScr.Serialization.Xml
         public static void SaveCompressed<T>(string path, T obj, CompressionLevel compressionLevel = CompressionLevel.Fastest)
         {
             string dirPath = Path.GetDirectoryName(path);
-            if (!string.IsNullOrEmpty(dirPath))
+            if (!string.IsNullOrEmpty(dirPath) && !Directory.Exists(dirPath))
                 Directory.CreateDirectory(dirPath);
 
             using var fs = new FileStream(

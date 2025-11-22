@@ -1,7 +1,4 @@
-﻿using BenScr.Serialization.Binary;
-using BenScr.Serialization.Json;
-using BenScr.Serialization.Xml;
-
+﻿
 namespace BenScr.Serialization
 {
     public enum Format { Json, Xml, Binary }

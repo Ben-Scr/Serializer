@@ -3,6 +3,7 @@ using BenScr.Serialization.Json;
 using BenScr.Serialization.Xml;
 using BenScr.Serialization;
 using System.Diagnostics;
+using Serializer.Src;
 
 public static class Program
 {
@@ -19,20 +20,11 @@ public static class Program
 
     public static void Main(string[] args)
     {
-        const string pathJson = "Preview.json", pathXml  = "Preview.xml", pathBin = "Preview.bin";
-        Vector2 vec2 = new Vector2 { X = 1.0f, Y = 2.0f };
-        Stopwatch sw = Stopwatch.StartNew();
+        // By default json and non compressed
+        EasySerialize.Format = Format.Json;
+        EasySerialize.IsCompressed = false;
 
-        Json.Save(pathJson, vec2);
-        Vector2 loadedInt = Json.Load<Vector2>(pathJson);
-        Console.WriteLine(loadedInt + " " + sw.ElapsedMilliseconds);
-
-        Xml.SaveCompressed(pathXml, vec2);
-        loadedInt = Xml.LoadCompressed<Vector2>(pathXml);
-        Console.WriteLine(loadedInt + " " + sw.ElapsedMilliseconds);
-
-        Binary.Save(pathBin, vec2);
-        loadedInt = Binary.Load<Vector2>(pathBin); 
-        Console.WriteLine(loadedInt + " " + sw.ElapsedMilliseconds);
+        EasySerialize.Serialize("Highscore", 100);
+        int highScore = EasySerialize.Deserialize<int>("Highscore");
     }
 }

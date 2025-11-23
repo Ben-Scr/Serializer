@@ -1,7 +1,7 @@
 ﻿
 namespace BenScr.Serialization
 {
-    public enum Format { Json, Xml, Binary }
+    public enum Format { Json = 0, Xml = 1, Binary = 2 }
 
     public static class FileConverter
     {

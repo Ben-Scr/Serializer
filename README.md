@@ -40,3 +40,12 @@ Converting files from one format to any other
 // You can override the output path by specifying it as the fourth parameter.
 FileConverter.ConvertTo(path: "path.json", original: Format.Json, to: Format.Xml);
 ```
+EasySerialize - High Level Serialization
+```csharp
+// By default json and non compressed
+EasySerialize.Format = Format.Json;
+EasySerialize.IsCompressed = false;
+
+EasySerialize.Serialize("Highscore", 100);
+int highScore = EasySerialize.Deserialize<int>("Highscore");
+```

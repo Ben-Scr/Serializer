@@ -20,8 +20,8 @@ namespace BenScr.Serializer
 
             object? obj = original switch
             {
-                Format.Json => Json.Json.Load<object>(path),
-                Format.Xml => Xml.Xml.Load<object>(path),
+                Format.Json => Json.Load<object>(path),
+                Format.Xml => Xml.Load<object>(path),
                 Format.Binary => Binary.Load<object>(path),
                 _ => throw new NotSupportedException($"Unsupported format: {original}")
             };
@@ -35,9 +35,9 @@ namespace BenScr.Serializer
 
             switch (to)
             {
-                case Format.Json: Json.Json.Save(newPath, obj); break;
-                case Format.Xml: Xml.Xml.Save(newPath, obj); break;
-                case Format.Binary: Binary.Binary.Save(newPath, obj); break;
+                case Format.Json: Json.Save(newPath, obj); break;
+                case Format.Xml: Xml.Save(newPath, obj); break;
+                case Format.Binary: Binary.Save(newPath, obj); break;
                 default: throw new NotSupportedException($"Unsupported format: {to}");
             }
         }

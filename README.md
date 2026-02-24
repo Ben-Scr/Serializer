@@ -6,9 +6,7 @@ A Performant C# `Net 9.0` Serialization library that combines Json, Xml and Bina
 
 ## How to use
 ```csharp
-using BenScr.Serialization.Json;
-using BenScr.Serialization.Xml;
-using BenScr.Serialization.Binary;
+using BenScr.Serializer;
 ```
 
 - Json

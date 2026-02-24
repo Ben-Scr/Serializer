@@ -2,7 +2,7 @@
 using System.Text.Json;
 using System.Xml.Serialization;
 
-namespace BenScr.Serialization.Xml
+namespace BenScr.Serializer
 {
     public static class Xml
     {

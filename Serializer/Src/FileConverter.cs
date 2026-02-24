@@ -1,5 +1,5 @@
 ﻿
-namespace BenScr.Serialization
+namespace BenScr.Serializer
 {
     public enum Format { Json = 0, Xml = 1, Binary = 2 }
 
@@ -22,7 +22,7 @@ namespace BenScr.Serialization
             {
                 Format.Json => Json.Json.Load<object>(path),
                 Format.Xml => Xml.Xml.Load<object>(path),
-                Format.Binary => Binary.Binary.Load<object>(path),
+                Format.Binary => Binary.Load<object>(path),
                 _ => throw new NotSupportedException($"Unsupported format: {original}")
             };
 

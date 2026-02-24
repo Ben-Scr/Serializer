@@ -2,7 +2,7 @@
 using System.Security.Cryptography;
 using System.Text.Json;
 
-namespace BenScr.Serialization.Json
+namespace BenScr.Serializer
 {
     public static class Json
     {

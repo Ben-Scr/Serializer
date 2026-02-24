@@ -3,6 +3,7 @@ A Performant C# `Net 9.0` Serialization library that combines Json, Xml and Bina
 
 ## Features
 - Serialization and Deserialization of Json, Xml and Binary
+- Conversion of one format to another fx. Json to Binary
 
 ## How to use
 ```csharp

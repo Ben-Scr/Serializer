@@ -1,7 +1,4 @@
-﻿using BenScr.Serializer.Binary;
-using BenScr.Serializer.Json;
-using BenScr.Serializer.Xml;
-using BenScr.Serializer;
+﻿using BenScr.Serializer;
 using System.Diagnostics;
 
 public static class Program

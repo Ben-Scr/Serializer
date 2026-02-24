@@ -27,7 +27,7 @@ PersonData loadedPerson = Binary.Load<PersonData>(path);
 ```csharp
 string path = "Test.xml";
 PersonData data = new PersonData("Name", 20);
-XML.Save(path, data);
+Xml.Save(path, data);
 PersonData loadedPerson = XML.Load<PersonData>(path);
 ```
 Converting files from one format to any other

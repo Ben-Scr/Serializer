@@ -25,8 +25,8 @@ public static class Program
         Vector2 loadedVec2 = Json.Load<Vector2>(pathJson);
         Console.WriteLine("Json: " + loadedVec2);
         
-        Xml.SaveCompressed(pathXml, vec2);
-        loadedVec2 = Xml.LoadCompressed<Vector2>(pathXml);
+        Xml.Save(pathXml, vec2);
+        loadedVec2 = Xml.Load<Vector2>(pathXml);
         Console.WriteLine("Xml: " + loadedVec2);
 
         Binary.Save(pathBin, vec2);

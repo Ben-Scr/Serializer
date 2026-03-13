@@ -1,4 +1,4 @@
-# Serializer
+# BenScr.Serialization
 A Performant C# `Net 9.0` Serialization library that combines Json, Xml and Binary
 
 ## Features

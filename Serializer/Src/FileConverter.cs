@@ -1,5 +1,5 @@
 ﻿
-namespace BenScr.Serializer
+namespace BenScr.Serialization
 {
     public enum Format { Json = 0, Xml = 1, Binary = 2 }
 

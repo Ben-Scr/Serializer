@@ -1,6 +1,6 @@
 ﻿using MessagePack;
 
-namespace BenScr.Serializer
+namespace BenScr.Serialization
 {
     public static class Binary
     {

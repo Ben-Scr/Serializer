@@ -1,7 +1,7 @@
 ﻿using System.Security.Cryptography;
 using System.Text.Json;
 
-namespace BenScr.Serializer
+namespace BenScr.Serialization
 {
     public static class JsonSecure
     {

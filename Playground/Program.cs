@@ -1,5 +1,4 @@
-﻿using BenScr.Serializer;
-using System.Diagnostics;
+﻿using BenScr.Serialization;
 
 public static class Program
 {

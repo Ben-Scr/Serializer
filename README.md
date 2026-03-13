@@ -1,37 +1,44 @@
-# Serializer
+# BenScr.Serialization
 A Performant C# `Net 9.0` Serialization library that combines Json, Xml and Binary
 
 ## Features
 - Serialization and Deserialization of Json, Xml and Binary
-- Conversion of one format to another fx. Json to Binary
+- Conversion of one format to another fx. Json -> Binary
 
 ## How to use
+### Include
 ```csharp
 using BenScr.Serializer;
 ```
-
-- Json
+---
+### Set a path and create an object
 ```csharp
-string path = "Test.json";
-PersonData data = new PersonData("Name", 20);
-Json.Save(path, data);
+string path = "Test.dat";
+PersonData person = new("Name", 20);
+```
+---
+### Json
+```csharp
+Json.Save(path, person);
 PersonData loadedPerson = Json.Load<PersonData>(path);
+string json = Json.Serialize(person);
 ```
-- Binary
+---
+### Binary
 ```csharp
-string path = "Test.bin";
-PersonData data = new PersonData("Name", 20);
-Binary.Save(path, data);
+Binary.Save(path, person);
 PersonData loadedPerson = Binary.Load<PersonData>(path);
+byte[] binary = Binary.Serialize(person);
 ```
-- Xml
+---
+### Xml
 ```csharp
-string path = "Test.xml";
-PersonData data = new PersonData("Name", 20);
 Xml.Save(path, data);
 PersonData loadedPerson = XML.Load<PersonData>(path);
+byte[] xml = Xml.Serialize(person);
 ```
-Converting files from one format to any other
+---
+### Converting files from one format to any other
 ```csharp
 // ConvertTo() creates a new file containing the same data,
 // but converted into a different format.
@@ -39,3 +46,6 @@ Converting files from one format to any other
 // You can override the output path by specifying it as the fourth parameter.
 FileConverter.ConvertTo(path: "path.json", original: Format.Json, to: Format.Xml);
 ```
+
+## External Libaries
+- MessagePack: https://github.com/MessagePack-CSharp/MessagePack-CSharp

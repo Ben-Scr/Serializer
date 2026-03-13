@@ -66,5 +66,25 @@ namespace BenScr.Serializer
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
             return (T)xmlSerializer.Deserialize(gzip) ?? defaultValue;
         }
+
+        public static byte[] Serialize<T>(T obj)
+        {
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
+            using var memoryStream = new MemoryStream();
+            xmlSerializer.Serialize(memoryStream, obj);
+            return memoryStream.ToArray();
+        }
+        public static byte[] SerializeCompressed<T>(T obj, CompressionLevel compressionLevel = CompressionLevel.Fastest)
+        {
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
+            using var memoryStream = new MemoryStream();
+
+            using (var gzip = new GZipStream(memoryStream, compressionLevel, leaveOpen: true))
+            {
+                xmlSerializer.Serialize(gzip, obj);
+            }
+
+            return memoryStream.ToArray();
+        }
     }
 }

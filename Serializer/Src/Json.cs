@@ -1,4 +1,5 @@
-﻿using System.IO.Compression;
+﻿using MessagePack;
+using System.IO.Compression;
 using System.Security.Cryptography;
 using System.Text.Json;
 
@@ -37,7 +38,7 @@ namespace BenScr.Serializer
                 JsonSerializer.Serialize(fs, obj, options);
             }
         }
-        public static void SaveCompressed<T>(string path, T item, CompressionLevel compressionLevel = CompressionLevel.Fastest, JsonSerializerOptions? options = null)
+        public static void SaveCompressed<T>(string path, T obj, CompressionLevel compressionLevel = CompressionLevel.Fastest, JsonSerializerOptions? options = null)
         {
             string dirPath = Path.GetDirectoryName(path);
 
@@ -55,7 +56,7 @@ namespace BenScr.Serializer
             options ??= DefaultJson;
 
             using var gzip = new GZipStream(fs, compressionLevel, leaveOpen: false);
-            JsonSerializer.Serialize(gzip, item, DefaultJson);
+            JsonSerializer.Serialize(gzip, obj, DefaultJson);
         }
 
         public static T Load<T>(string path, T defaultValue = default!, JsonSerializerOptions? options = null)
@@ -90,6 +91,29 @@ namespace BenScr.Serializer
 
             using var gzip = new GZipStream(fs, CompressionMode.Decompress, leaveOpen: false);
             return JsonSerializer.Deserialize<T>(gzip, DefaultJson) ?? defaultValue;
+        }
+
+        public static string Serialize<T>(T obj, JsonSerializerOptions? options = null)
+        {
+            options ??= DefaultJson;
+            return JsonSerializer.Serialize(obj, options);
+        }
+
+        public static byte[] SerializeCompressed<T>(
+            T obj,
+            CompressionLevel compressionLevel = CompressionLevel.Fastest,
+            JsonSerializerOptions? options = null)
+        {
+            options ??= DefaultJson;
+
+            using var memoryStream = new MemoryStream();
+
+            using (var gzip = new GZipStream(memoryStream, compressionLevel, leaveOpen: true))
+            {
+                JsonSerializer.Serialize(gzip, obj, options);
+            }
+
+            return memoryStream.ToArray();
         }
     }
 }

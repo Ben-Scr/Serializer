@@ -33,5 +33,11 @@ namespace BenScr.Serializer
             options ??= DefaultMsgPack;
             return MessagePackSerializer.Deserialize<T>(fs, options) ?? defaultValue;
         }
+
+        public static byte[] Serialize<T>(T obj, MessagePackSerializerOptions? options = null)
+        {
+            options ??= DefaultMsgPack;
+            return MessagePackSerializer.Serialize(obj, options);
+        }
     }
 }
